@@ -1,0 +1,177 @@
+{% extends "layout.html" %}
+{% block content_home %} 
+	
+    <!-- start of slider  -->
+    <section id="main">
+    	<div id="Carousel" class="carousel slide" data-ride="carousel">
+    		<ol class="carousel-indicators">
+    			<li data-target="#Carousel" data-slide-to="0" class="active"></li>
+    			<li data-target="#Carousel" data-slide-to="1"></li>
+    			<li data-target="#Carousel" data-slide-to="2"></li>
+    		</ol>
+    		<div class="carousel-inner">
+    		 	<div class="carousel-item carousel-image-1 active">
+
+    				<div class="container">
+    					<div class="carousel-caption d-none d-sm-block text-right mb-5">
+    						<h1 class="display-3 title-color"> Inventory Trading System</h1>
+    						<a href="{{url_for('register')}}"class="btn btn-color slide-btn btn-lg"> Sign Up </a>
+    					</div>
+    				</div>
+    			</div>
+    			
+    		<div class="carousel-item carousel-image-2">
+    				<div class="container">
+    					<div class="carousel-caption d-none d-sm-block text-right mb-5">
+    						<h1 class="display-3 title-color"> Inventory Trading System</h1>
+    						<a href="{{url_for('register')}}" class="btn btn-color slide-btn btn-lg"> Sign Up </a>
+    					</div>
+    				</div>
+    			</div>
+    			<div class="carousel-item carousel-image-3 ">
+    				<div class="container">
+    					<div class="carousel-caption d-none d-sm-block text-right mb-5">
+    						<h1 class="display-3 title-color"> Inventory Trading System</h1>
+    						<a href="{{url_for('register')}}"class="btn btn-color slide-btn btn-lg"> Sign Up </a>
+    					</div>
+    				</div>
+    			</div>
+
+    			<a href="#Carousel" data-slide="prev" class="carousel-control-prev">
+    				<span class="carousel-control-prev-icon"></span>
+    			</a>
+    			<a href="#Carousel" data-slide="next" class="carousel-control-next">
+    				<span class="carousel-control-next-icon"></span>
+    			</a>
+
+    		</div>
+    	</div>
+    </section>
+    <!-- end of slider -->
+
+    <!-- featured products -->
+
+    <section id="products" class="products py-5">
+        <div class="container">
+            <!-- section title -->
+            <div class="row">
+                <div class="col-10 mx-auto col-sm-6 text-center">
+                    <h1 class="text-capitalize product-title">Featured Products</h1>
+                </div>
+            </div>
+            <!-- end section title -->
+
+            <!-- Product items -->
+            <div class="row product-items" id="product-items">
+                <!-- single items -->
+                <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3">
+                    <div class="card single-item">
+                      <div class="img-container">
+                        <img src="../static/profile_pics/table1.jpg"  class="card-img-top product-img" alt="">
+                      </div>
+                      <div class="card-body">
+                        <div class="card-text d-flex justify-content-between text-capitalize text-center">
+                          <h5 id="item-name" > Wooden table </h5>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <!-- end of single item -->
+
+                <!-- single items -->
+                <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3">
+                    <div class="card single-item">
+                      <div class="img-container">
+                        <img src="../static/profile_pics/table1.jpg" class="card-img-top product-img" alt="">
+                      </div>
+                      <div class="card-body">
+                        <div class="card-text d-flex justify-content-between text-capitalize">
+                          <h5 id="item-name "> Mattress </h5>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <!-- end of single item -->
+
+                <!-- single items -->
+                <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3">
+                    <div class="card single-item">
+                      <div class="img-container">
+                        <img src="../static/profile_pics/table1.jpg" class="card-img-top product-img" alt="">
+                      </div>
+                      <div class="card-body">
+                        <div class="card-text d-flex justify-content-between text-capitalize">
+                          <h5 id="item-name "> Cooler </h5>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <!-- end of single item -->
+                <!-- single items -->
+                <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3">
+                    <div class="card single-item">
+                      <div class="img-container">
+                        <img src="../static/profile_pics/table1.jpg" class="card-img-top product-img" alt="">
+                      </div>
+                      <div class="card-body">
+                        <div class="card-text d-flex justify-content-between text-capitalize">
+                          <h5 id="item-name "> Wooden Table </h5>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <!-- end of single item -->
+                <!-- single items -->
+                <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3">
+                    <div class="card single-item">
+                      <div class="img-container">
+                        <img src="../static/profile_pics/table1.jpg" class="card-img-top product-img" alt="">
+                      </div>
+                      <div class="card-body">
+                        <div class="card-text d-flex justify-content-between text-capitalize">
+                          <h5 id="item-name "> Wooden Table </h5>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <!-- end of single item -->
+                <!-- single items -->
+                <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3">
+                    <div class="card single-item">
+                      <div class="img-container">
+                        <img src="../static/profile_pics/table1.jpg" class="card-img-top product-img" alt="">
+                      </div>
+                      <div class="card-body">
+                        <div class="card-text d-flex justify-content-between text-capitalize">
+                          <h5 id="item-name "> Wooden Table </h5>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <!-- end of single item -->
+                <!-- single items -->
+                <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3">
+                    <div class="card single-item">
+                      <div class="img-container">
+                        <img src="../static/profile_pics/table1.jpg" class="card-img-top product-img" alt="">
+                      </div>
+                      <div class="card-body">
+                        <div class="card-text d-flex justify-content-between text-capitalize">
+                          <h5 id="item-name "> Wooden Table </h5>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <!-- end of single item -->
+
+
+
+            </div>
+
+
+        </div>
+    </section>
+
+
+
+{% endblock content_home %}

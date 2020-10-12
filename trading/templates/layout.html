@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    
+    <script src="https://kit.fontawesome.com/39e65bec0f.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/main.css"/> 
+
+    {% if title %}
+      <title> Inventory Trading -{{title}} </title>
+    {% else %}
+      <title> Inventory Trading System</title>
+    {% endif %}
+
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-black">
+      <div class="container">
+        <a href="#" class="navbar-brand"> IIIT Lucknow </a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+          <span class = "navbar-toggler-icon"> </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a href="{{url_for('home')}}" class="nav-link"> Home </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link"> About</a>
+            </li>
+            {% if current_user.is_authenticated %}
+              <li class="nav-item">
+                <a href="{{url_for('login')}}" class="nav-link"> Add item</a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url_for('account')}}" class="nav-link"> Account</a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url_for('logout')}}" class="nav-link"> Logout</a>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a href="{{url_for('login')}}" class="nav-link"> Login</a>
+              </li>
+            {% endif %}
+            
+            
+          </ul>
+        </div>
+          
+      </div>
+
+    </nav> 
+
+
+
+
+    {% if home %}
+        {% block content_home %}{% endblock %}
+    {% else %}
+        <main role="main" class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-8">
+              {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                      {{ message }}
+                    </div>
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
+              {% block content %}{% endblock %}
+            </div>
+          </div>
+        </main>
+    {% endif %}
+    
+ 
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>
