@@ -1,4 +1,4 @@
-
+import os
 from flask import Flask
 
 from flask_sqlalchemy import SQLAlchemy
@@ -8,10 +8,10 @@ from flask_mail import Mail
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY']='65e7a9e3b83e640f5374a70ce09d0c91'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///trading_site.db'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
 db = SQLAlchemy(app)
-bcrypt=Bcrypt(app)
+bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
@@ -23,5 +23,4 @@ app.config['MAIL_USERNAME'] = '**@gmail.com'
 app.config['MAIL_PASSWORD'] = '**'
 mail = Mail(app)
 
-
-from trading import routes 
+from trading import routes
