@@ -88,7 +88,7 @@ a.article-title:hover {
 }
 .carousel-image-1{
 	background: linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.4)),
-	url('../static/profile_pics/pexels-bongkarn-thanyakij-3740862.jpg') no-repeat center fixed;;
+	url('../static/carousel/pexels-bongkarn-thanyakij-3740862.jpg') no-repeat center fixed;;
 	/*background-repeat:no-repeat;*/
     background-size: cover;
     
@@ -96,13 +96,13 @@ a.article-title:hover {
 }
 .carousel-image-2{
 	background: linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.4)),
-	url('../static/profile_pics/pexels-skitterphoto-4217.jpg') no-repeat center fixed;;
+	url('../static/carousel/pexels-skitterphoto-4217.jpg') no-repeat center fixed;;
 	/*background-repeat:no-repeat;*/
   	background-size: cover;
 }
 .carousel-image-3{
 	background: linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.4)),
-	url('../static/profile_pics/image3.jpg') no-repeat center fixed;
+	url('../static/carousel/image3.jpg') no-repeat center fixed;
 	background-repeat:no-repeat;
 	background-size: cover;
 }

@@ -14,9 +14,9 @@
     <link rel="stylesheet" type="text/css" href="../static/main.css"/> 
 
     {% if title %}
-      <title> Inventory Trading -{{title}} </title>
+      <title>Inventory Trading - {{title}}</title>
     {% else %}
-      <title> Inventory Trading System</title>
+      <title>Inventory Trading System</title>
     {% endif %}
 
   </head>
@@ -37,7 +37,7 @@
             </li>
             {% if current_user.is_authenticated %}
               <li class="nav-item">
-                <a href="{{url_for('login')}}" class="nav-link"> Add item</a>
+                <a href="{{url_for('add_item')}}" class="nav-link"> Add item</a>
               </li>
               <li class="nav-item">
                 <a href="{{url_for('account')}}" class="nav-link"> Account</a>

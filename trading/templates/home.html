@@ -63,105 +63,26 @@
 
             <!-- Product items -->
             <div class="row product-items" id="product-items">
-                <!-- single items -->
+              {% for item in items %}
                 <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3">
                     <div class="card single-item">
                       <div class="img-container">
-                        <img src="../static/profile_pics/table1.jpg"  class="card-img-top product-img" alt="">
+                        <img src="../static/item_pics/{{ item.image_file }}" class="card-img-top product-img" alt="">
                       </div>
                       <div class="card-body">
                         <div class="card-text d-flex justify-content-between text-capitalize text-center">
-                          <h5 id="item-name" > Wooden table </h5>
+                          <h5 id="item-name" >{{ item.name }}</h5>
                         </div>
+						<h6>Contact No. - {{ item.user_phone }}</h6>
                       </div>
                     </div>
                 </div>
+              {% endfor %}
+                <!-- single items -->
                 <!-- end of single item -->
 
                 <!-- single items -->
-                <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3">
-                    <div class="card single-item">
-                      <div class="img-container">
-                        <img src="../static/profile_pics/table1.jpg" class="card-img-top product-img" alt="">
-                      </div>
-                      <div class="card-body">
-                        <div class="card-text d-flex justify-content-between text-capitalize">
-                          <h5 id="item-name "> Mattress </h5>
-                        </div>
-                      </div>
-                    </div>
-                </div>
-                <!-- end of single item -->
-
-                <!-- single items -->
-                <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3">
-                    <div class="card single-item">
-                      <div class="img-container">
-                        <img src="../static/profile_pics/table1.jpg" class="card-img-top product-img" alt="">
-                      </div>
-                      <div class="card-body">
-                        <div class="card-text d-flex justify-content-between text-capitalize">
-                          <h5 id="item-name "> Cooler </h5>
-                        </div>
-                      </div>
-                    </div>
-                </div>
-                <!-- end of single item -->
-                <!-- single items -->
-                <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3">
-                    <div class="card single-item">
-                      <div class="img-container">
-                        <img src="../static/profile_pics/table1.jpg" class="card-img-top product-img" alt="">
-                      </div>
-                      <div class="card-body">
-                        <div class="card-text d-flex justify-content-between text-capitalize">
-                          <h5 id="item-name "> Wooden Table </h5>
-                        </div>
-                      </div>
-                    </div>
-                </div>
-                <!-- end of single item -->
-                <!-- single items -->
-                <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3">
-                    <div class="card single-item">
-                      <div class="img-container">
-                        <img src="../static/profile_pics/table1.jpg" class="card-img-top product-img" alt="">
-                      </div>
-                      <div class="card-body">
-                        <div class="card-text d-flex justify-content-between text-capitalize">
-                          <h5 id="item-name "> Wooden Table </h5>
-                        </div>
-                      </div>
-                    </div>
-                </div>
-                <!-- end of single item -->
-                <!-- single items -->
-                <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3">
-                    <div class="card single-item">
-                      <div class="img-container">
-                        <img src="../static/profile_pics/table1.jpg" class="card-img-top product-img" alt="">
-                      </div>
-                      <div class="card-body">
-                        <div class="card-text d-flex justify-content-between text-capitalize">
-                          <h5 id="item-name "> Wooden Table </h5>
-                        </div>
-                      </div>
-                    </div>
-                </div>
-                <!-- end of single item -->
-                <!-- single items -->
-                <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3">
-                    <div class="card single-item">
-                      <div class="img-container">
-                        <img src="../static/profile_pics/table1.jpg" class="card-img-top product-img" alt="">
-                      </div>
-                      <div class="card-body">
-                        <div class="card-text d-flex justify-content-between text-capitalize">
-                          <h5 id="item-name "> Wooden Table </h5>
-                        </div>
-                      </div>
-                    </div>
-                </div>
+                
                 <!-- end of single item -->
 
 

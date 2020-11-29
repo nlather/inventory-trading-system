@@ -3,15 +3,17 @@ import os
 from PIL import Image
 from flask import render_template, url_for, flash, redirect, request, abort
 from trading import app, db, bcrypt, mail
-from trading.forms import RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm
-from trading.models import User
+from trading.forms import RegistrationForm, LoginForm, UpdateAccountForm, AddItemForm, RequestResetForm, ResetPasswordForm
+from trading.models import User, Item
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
 
 
+@app.route("/")
 @app.route("/home")
 def home():
-    return render_template('home.html', home='home')
+    items = Item.query.all()
+    return render_template('home.html', home=home, items=items)
 
 
 @app.route("/register", methods=['GET', 'POST'])
@@ -20,10 +22,9 @@ def register():
         return redirect(url_for('home'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(
-            form.password.data).decode('utf-8')
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user = User(username=form.username.data, enrollment=form.enrollment.data,
-                    email=form.email.data, password=hashed_password)
+                    email=form.email.data, phone=form.phone.data, password=hashed_password)
         db.session.add(user)
         db.session.commit()
         flash(f'Account created for {form.username.data}!. You are now able to login', 'success')
@@ -41,7 +42,7 @@ def login():
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('home'))
+            return redirect(next_page if next_page else url_for('home'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html', title='Login', form=form)
@@ -54,16 +55,15 @@ def logout():
     return redirect(url_for('home'))
 
 
-def save_picture(form_picture):
+def save_picture(folder, form_picture):
     random_hex = secrets.token_hex(8)
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_name = random_hex + f_ext
-    picture_path = os.path.join(
-        app.root_path, 'static/profile_pics', picture_name)
+    picture_path = os.path.join(app.root_path, 'static/'+folder, picture_name)
 
     output_size = (125, 125)
     i = Image.open(form_picture)
-    i.thumbnail(output_size)
+    i.thumbnail(output_size, Image.ANTIALIAS)
     i.save(picture_path)
     return picture_name
 
@@ -74,11 +74,12 @@ def account():
     form = UpdateAccountForm()
     if form.validate_on_submit():
         if form.picture.data:
-            picture_name = save_picture(form.picture.data)
+            picture_name = save_picture('profile_pics', form.picture.data)
             current_user.image_file = picture_name
         current_user.username = form.username.data
         current_user.email = form.email.data
         current_user.enrollment = form.enrollment.data
+        current_user.phone = form.phone.data
         db.session.commit()
         flash('Your account has been updated', 'success')
         return redirect(url_for('account'))
@@ -86,8 +87,24 @@ def account():
         form.username.data = current_user.username
         form.email.data = current_user.email
         form.enrollment.data = current_user.enrollment
+        form.phone.data = current_user.phone
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     return render_template('account.html', title='Account', image_file=image_file, form=form)
+
+
+@app.route("/add", methods=['GET', 'POST'])
+@login_required
+def add_item():
+    form = AddItemForm()
+    if form.validate_on_submit():
+        item = Item(owner=current_user, name=form.name.data, user_phone=current_user.phone)
+        if form.image.data:
+            item.image_file = save_picture('item_pics', form.image.data)
+        db.session.add(item)
+        db.session.commit()
+        flash('Item added successfully!', 'success')
+        return redirect(url_for('add_item'))
+    return render_template('add_item.html', title='Add Item', form=form)
 
 
 def send_reset_email(user):
