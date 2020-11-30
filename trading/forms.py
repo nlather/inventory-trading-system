@@ -7,9 +7,9 @@ from trading.models import User
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=2, max=30)])
-    enrollment = StringField('Enrollment Number', validators=[DataRequired(), Length(10)])
+    enrollment = StringField('Enrollment Number', validators=[DataRequired(), Length(min=10, max=10)])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    phone = StringField('Phone Number', validators=[DataRequired(), Length(10)])
+    phone = StringField('Phone Number', validators=[DataRequired(), Length(min=10, max=10)])
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Sign Up')
@@ -34,9 +34,9 @@ class LoginForm(FlaskForm):
 
 class UpdateAccountForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=2, max=30)])
-    enrollment = StringField('Enrollment Number', validators=[DataRequired(), Length(min=2, max=30)])
+    enrollment = StringField('Enrollment Number', validators=[DataRequired(), Length(min=10, max=10)])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    phone = StringField('Phone Number', validators=[DataRequired(), Length(10)])
+    phone = StringField('Phone Number', validators=[DataRequired(), Length(min=10, max=10)])
     submit = SubmitField('Update')
 
     picture = FileField('Update Profile Pic', validators=[FileAllowed(['jpg','png','jpeg'])])

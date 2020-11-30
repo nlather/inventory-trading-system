@@ -8,7 +8,6 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-    
     <script src="https://kit.fontawesome.com/39e65bec0f.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../static/main.css"/> 
@@ -23,44 +22,37 @@
   <body>
     <nav class="navbar navbar-expand-sm navbar-dark bg-black">
       <div class="container">
-        <a href="#" class="navbar-brand"> IIIT Lucknow </a>
+        <a href="#" class="navbar-brand">IIIT Lucknow</a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
           <span class = "navbar-toggler-icon"> </span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a href="{{url_for('home')}}" class="nav-link"> Home </a>
+              <a href="{{url_for('home')}}" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link"> About</a>
+              <a href="https://github.com/nlather/inventory-trading-system" class="nav-link">About</a>
             </li>
             {% if current_user.is_authenticated %}
               <li class="nav-item">
-                <a href="{{url_for('add_item')}}" class="nav-link"> Add item</a>
+                <a href="{{url_for('items')}}" class="nav-link">Manage Items</a>
               </li>
               <li class="nav-item">
-                <a href="{{url_for('account')}}" class="nav-link"> Account</a>
+                <a href="{{url_for('account')}}" class="nav-link">Account</a>
               </li>
               <li class="nav-item">
-                <a href="{{url_for('logout')}}" class="nav-link"> Logout</a>
+                <a href="{{url_for('logout')}}" class="nav-link">Logout</a>
               </li>
             {% else %}
               <li class="nav-item">
-                <a href="{{url_for('login')}}" class="nav-link"> Login</a>
+                <a href="{{url_for('login')}}" class="nav-link">Login</a>
               </li>
             {% endif %}
-            
-            
           </ul>
         </div>
-          
       </div>
-
     </nav> 
-
-
-
 
     {% if home %}
         {% block content_home %}{% endblock %}
@@ -83,11 +75,6 @@
         </main>
     {% endif %}
     
- 
-
-
-
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

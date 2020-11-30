@@ -1,6 +1,7 @@
 import secrets
 import os
 from PIL import Image
+from resizeimage import resizeimage
 from flask import render_template, url_for, flash, redirect, request, abort
 from trading import app, db, bcrypt, mail
 from trading.forms import RegistrationForm, LoginForm, UpdateAccountForm, AddItemForm, RequestResetForm, ResetPasswordForm
@@ -61,10 +62,10 @@ def save_picture(folder, form_picture):
     picture_name = random_hex + f_ext
     picture_path = os.path.join(app.root_path, 'static/'+folder, picture_name)
 
-    output_size = (125, 125)
-    i = Image.open(form_picture)
-    i.thumbnail(output_size, Image.ANTIALIAS)
-    i.save(picture_path)
+    with Image.open(form_picture) as image:
+        cover = resizeimage.resize_cover(image, [500, 400], validate=False)
+        cover.save(picture_path)
+
     return picture_name
 
 
@@ -92,9 +93,15 @@ def account():
     return render_template('account.html', title='Account', image_file=image_file, form=form)
 
 
-@app.route("/add", methods=['GET', 'POST'])
+@app.route("/user/<string:username>")
+def user(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    return render_template('user.html', title=username+"'s Profile", user=user)
+
+
+@app.route("/items", methods=['GET', 'POST'])
 @login_required
-def add_item():
+def items():
     form = AddItemForm()
     if form.validate_on_submit():
         item = Item(owner=current_user, name=form.name.data, user_phone=current_user.phone)
@@ -103,8 +110,20 @@ def add_item():
         db.session.add(item)
         db.session.commit()
         flash('Item added successfully!', 'success')
-        return redirect(url_for('add_item'))
-    return render_template('add_item.html', title='Add Item', form=form)
+        return redirect(url_for('items'))
+    return render_template('items.html', title='Manage Items', form=form, items=current_user.items)
+
+
+@app.route("/items/<int:item_id>/delete", methods=['POST'])
+@login_required
+def delete_item(item_id):
+    item = Item.query.get_or_404(item_id)
+    if item.owner != current_user:
+        abort(403)
+    db.session.delete(item)
+    db.session.commit()
+    flash('Item has been removed!', 'success')
+    return redirect(url_for('items'))
 
 
 def send_reset_email(user):

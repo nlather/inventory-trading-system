@@ -15,7 +15,7 @@
     				<div class="container">
     					<div class="carousel-caption d-none d-sm-block text-right mb-5">
     						<h1 class="display-3 title-color"> Inventory Trading System</h1>
-    						<a href="{{url_for('register')}}"class="btn btn-color slide-btn btn-lg"> Sign Up </a>
+    						<a href="{{ url_for('register') }}"class="btn btn-color slide-btn btn-lg"> Sign Up </a>
     					</div>
     				</div>
     			</div>
@@ -24,7 +24,7 @@
     				<div class="container">
     					<div class="carousel-caption d-none d-sm-block text-right mb-5">
     						<h1 class="display-3 title-color"> Inventory Trading System</h1>
-    						<a href="{{url_for('register')}}" class="btn btn-color slide-btn btn-lg"> Sign Up </a>
+    						<a href="{{ url_for('register') }}" class="btn btn-color slide-btn btn-lg"> Sign Up </a>
     					</div>
     				</div>
     			</div>
@@ -32,7 +32,7 @@
     				<div class="container">
     					<div class="carousel-caption d-none d-sm-block text-right mb-5">
     						<h1 class="display-3 title-color"> Inventory Trading System</h1>
-    						<a href="{{url_for('register')}}"class="btn btn-color slide-btn btn-lg"> Sign Up </a>
+    						<a href="{{ url_for('register') }}"class="btn btn-color slide-btn btn-lg"> Sign Up </a>
     					</div>
     				</div>
     			</div>
@@ -56,7 +56,7 @@
             <!-- section title -->
             <div class="row">
                 <div class="col-10 mx-auto col-sm-6 text-center">
-                    <h1 class="text-capitalize product-title">Featured Products</h1>
+                    <h1 class="text-capitalize product-title">Listed Products</h1>
                 </div>
             </div>
             <!-- end section title -->
@@ -73,26 +73,14 @@
                         <div class="card-text d-flex justify-content-between text-capitalize text-center">
                           <h5 id="item-name" >{{ item.name }}</h5>
                         </div>
-						<h6>Contact No. - {{ item.user_phone }}</h6>
+						<h6>Contact No: {{ item.user_phone }}</h6>
+						Listed by: <a href="{{ url_for('user', username=item.owner.username) }}">{{ item.owner.username }}</a>
                       </div>
                     </div>
                 </div>
               {% endfor %}
-                <!-- single items -->
-                <!-- end of single item -->
-
-                <!-- single items -->
-                
-                <!-- end of single item -->
-
-
-
             </div>
-
-
         </div>
     </section>
-
-
 
 {% endblock content_home %}

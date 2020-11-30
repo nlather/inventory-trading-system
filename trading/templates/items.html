@@ -35,6 +35,39 @@
     		</div>
     	</form>  	
     </div>
+
+    <section id="products" class="products py-5">
+        <div class="container">
+            <!-- section title -->
+            <div class="row">
+                <div class="col-10 mx-auto col-sm-6 text-center">
+                    <h1 class="text-capitalize product-title">My Items</h1>
+                </div>
+            </div>
+            <!-- end section title -->
+
+            <!-- Product items -->
+            <div class="row product-items" id="product-items">
+              {% for item in items %}
+                <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3">
+                    <div class="card single-item">
+                      <div class="img-container">
+                        <img src="../static/item_pics/{{ item.image_file }}" class="card-img-top product-img" alt="">
+                      </div>
+                      <div class="card-body">
+                        <div class="card-text d-flex justify-content-between text-capitalize text-center">
+                          <h5 id="item-name" >{{ item.name }}</h5>
+                        </div>
+						<form action="{{ url_for('delete_item', item_id=item.id) }}" method="post">
+                            <input class="btn btn-danger" type="submit" value="Delete Item">
+                        </form>
+                      </div>
+                    </div>
+                </div>
+              {% endfor %}
+            </div>
+        </div>
+    </section>
     
  {% endblock %}
   
