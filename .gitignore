@@ -3,4 +3,6 @@ Pipfile.lock
 .vscode
 .pylintrc
 .pyc
-.db
+trading_site.db
+__pycache__
+
