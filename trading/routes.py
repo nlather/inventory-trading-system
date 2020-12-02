@@ -14,7 +14,7 @@ from flask_mail import Message
 @app.route("/home")
 def home():
     items = Item.query.all()
-    return render_template('home.html', home=home, items=items)
+    return render_template('home.html', title='Home', items=items)
 
 
 @app.route("/register", methods=['GET', 'POST'])

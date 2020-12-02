@@ -20,7 +20,7 @@
 
   </head>
   <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-black">
+    <nav class="navbar navbar-expand-sm fixed-top navbar-dark bg-black">
       <div class="container">
         <a href="#" class="navbar-brand">IIIT Lucknow</a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -28,24 +28,49 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
+            {% if title=="Home" %}
+              <li class="nav-item active">
+            {% else %}
+              <li class="nav-item">
+            {% endif %}
+            
               <a href="{{url_for('home')}}" class="nav-link">Home</a>
             </li>
-            <li class="nav-item">
+            {% if title=="About" %}
+              <li class="nav-item active">
+            {% else %}
+              <li class="nav-item">
+            {% endif %}
               <a href="https://github.com/nlather/inventory-trading-system" class="nav-link">About</a>
             </li>
             {% if current_user.is_authenticated %}
+            {% if title=="Manage Items" %}
+              <li class="nav-item active">
+            {% else %}
               <li class="nav-item">
+            {% endif %}
                 <a href="{{url_for('items')}}" class="nav-link">Manage Items</a>
               </li>
-              <li class="nav-item">
+              {% if title=="Account" %}
+                <li class="nav-item active">
+              {% else %}
+                <li class="nav-item">
+              {% endif %}
                 <a href="{{url_for('account')}}" class="nav-link">Account</a>
               </li>
-              <li class="nav-item">
+              {% if title=="Logout" %}
+                <li class="nav-item active">
+              {% else %}
+                <li class="nav-item">
+              {% endif %}
                 <a href="{{url_for('logout')}}" class="nav-link">Logout</a>
               </li>
             {% else %}
-              <li class="nav-item">
+              {% if title=="Login" %}
+                <li class="nav-item active">
+              {% else %}
+                <li class="nav-item">
+              {% endif %}
                 <a href="{{url_for('login')}}" class="nav-link">Login</a>
               </li>
             {% endif %}
@@ -54,7 +79,7 @@
       </div>
     </nav> 
 
-    {% if home %}
+    {% if title=="Home" %}
         {% block content_home %}{% endblock %}
     {% else %}
         <main role="main" class="container">
